@@ -1,0 +1,55 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'org.openjfx.javafxplugin' version '0.0.14'
+}
+
+group 'com.wedasoft'
+version '1.0.0'
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+ext {
+    javaFxVersion = '17.0.8'
+    junitVersion = '5.10.0'
+    assertJVersion = '3.24.2'
+    mainClassNameParam = 'your.groupId.javafxappnonmodular.MainApplicationLauncher'
+}
+
+//noinspection GroovyUnusedAssignment
+mainClassName = "${mainClassNameParam}"
+//noinspection GroovyUnusedAssignment
+sourceCompatibility = '17'
+//noinspection GroovyUnusedAssignment
+targetCompatibility = '17'
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+javafx {
+    version = "${javaFxVersion}"
+    modules = ['javafx.controls', 'javafx.fxml']
+}
+
+dependencies {
+    testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
+    testImplementation("org.assertj:assertj-core:${assertJVersion}")
+}
+
+test {
+    useJUnitPlatform()
+}
+
+task createCustomFatJar(type: Jar) {
+    manifest {
+        attributes 'Main-Class': "${mainClassNameParam}"
+    }
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    from { configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
+}
