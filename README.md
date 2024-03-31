@@ -1,4 +1,4 @@
-# Description
+### Description
 
 A simple running JavaFX application template.
 
@@ -16,10 +16,7 @@ A simple running JavaFX application template.
 |----------------------|-----------------------------------------------|
 | Can create a fat JAR | Yes. Use the gradle task "createCustomFatJar" |  
 
-
-
-<br><br>
-# How to import in Eclipse IDE
+### How to import in Eclipse IDE
 
 ![import-in-eclipse-1](https://github.com/davidweber411/JavaFxAppMavenNonModular/assets/108978258/5c554853-0966-41c7-8b77-17b414f5e174)
 
