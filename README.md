@@ -1,6 +1,6 @@
 ### Description
 
-A simple running JavaFX application template.
+A simple running application based on JavaFX and Gradle.
 
 ### Used technologies
 
